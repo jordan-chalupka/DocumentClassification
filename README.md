@@ -50,3 +50,7 @@ Optional:
 ```bash
 fly deploy
 ```
+This will deploy the service to a url like https://tailwind-demo.fly.dev
+```bash
+curl -X GET https://tailwind-demo.fly.dev/api/completion -F "file=@src/main/resources/sample-insurance-documents/Sample_Insurance_Cert.pdf"
+```
