@@ -1,0 +1,25 @@
+import os
+import requests
+
+directory = 'src/main/resources/sample-insurance-documents'
+
+url = 'http://localhost:8080/api/completion'
+
+for filename in os.listdir(directory):
+    file_path = os.path.join(directory, filename)
+    
+    if os.path.isfile(file_path):
+        print(f"Processing file: {filename}")
+        
+        with open(file_path, 'rb') as file:
+            files = {'file': file}
+            response = requests.get(url, files=files)
+        
+        if response.status_code == 200:
+            print(f"Result for {filename}: {response.text}")
+        else:
+            print(f"Failed to process {filename}. Status code: {response.status_code}")
+            print(f"Error: {response.text}")
+        print()
+
+print("Processing complete.")
